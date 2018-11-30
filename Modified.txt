@@ -1,0 +1,2 @@
+Fixed a typo in ConnectionBasicsTest
+canConnectMultiplePlayers, was canConenctMultiplePlayers
