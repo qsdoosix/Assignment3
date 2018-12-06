@@ -1,2 +1,4 @@
-Fixed a typo in ConnectionBasicsTest
+Fixed a typo in ConnectionBasicsTest.java
 canConnectMultiplePlayers, was canConenctMultiplePlayers
+
+Added a quick selection for hand card checkbox in IndexPage.java
