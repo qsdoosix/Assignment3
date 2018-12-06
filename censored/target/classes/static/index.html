@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hum - Selenium Poker</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/cards.css"/>
+    <script src="js/sockjs-0.3.4.js"></script>
+    <script src="js/game.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body onload="disconnect()">
+<div>
+    <div id="connect-container">
+        <!-- Connect/Disconnect buttons -->
+        <div>
+            Connection:
+            <br/>
+            <button id="connect" onclick="connect();">
+                Connect
+            </button>
+            <button id="disconnect" disabled="disabled" onclick="disconnect();">
+                Disconnect
+            </button>
+            
+        </div>
+        <!-- Game options -->
+        <div id="game-container">
+            Game options:
+            <br/>
+            <button id="stay" disabled="disabled" onclick="game_option('STAY');">
+                Stay
+            </button>
+            <button id="hit" disabled="disabled" onclick="game_option('HIT');">
+                Hit
+            </button>
+            <button  id="done" type="submit" form="playerHandCards" onClick="sendCards();">
+                Done
+            </button>
+         
+        </div>
+        <div id="admin-container2" class="container">
+            Number of Human Players:
+            <br/>
+            <input id="numberPlayers" placeholder="Number of players" maxlength="1" size="15" disabled="disabled"
+                   value="1">
+        </div>
+        <div id="admin-container">
+            <button id="open" disabled="disabled" onclick="acceptOthers();">
+                Open lobby
+            </button>
+            <button id="start" disabled="disabled" onclick="start();">
+                Start game
+            </button>
+            <button id="shutdown" disabled="disabled" onclick="shutdown();">Shutdown</button>
+            <button id="rig" disabled="disabled" onclick="start_rigged();">Rigged Game</button>
+        </div>
+
+
+
+        <!-- Some notes -->
+        <div id="info-container">
+            <p>The first user to connect will be set as admin,
+            they can choose the number of of human players/
+            The admin can choose to play the game, or rig the game.
+
+             </p>
+
+       
+
+        </div>
+    </div>
+    <div id="console-container">
+
+        <label id="consoleText" for="console">Console</label>
+
+        <div id="console"></div>
+        <label id="yourHandText" for="playerHand">Your Hand</label>
+        <div id="playerHand" class="playingCards fourColours">
+        <form id = "playerHandCards">
+            <div id="card1" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card2" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card3" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card4" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+              <div id="card4" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <input type="Submit" name="done">
+            
+        </form>
+    </div>
+     <label id="otherHandText1" for="otherHand1">Other Player's Hand</label>
+    <div id="otherHand1" class="playingCards fourColours">
+        <form id = "otherHandCards1">
+            <div id="card1" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card2" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card3" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card4" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+              <div id="card4" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+        </form>
+    </div>
+     <label id="otherHandText2" for="otherHand2">Other Player's Hand</label>
+    <div id="otherHand2" class="playingCards fourColours">
+        <form id = "otherHandCards2">
+            <div id="card1" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card2" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card3" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card4" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+              <div id="card4" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <input type="Submit" name="done">
+            
+        </form>
+    </div>
+     <label id="otherHandText3" for="otherHand3">Other Player's Hand</label>
+    <div id="otherHand3" class="playingCards fourColours">
+        <form id = "otherHandCards3">
+            <div id="card1" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card2" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card3" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+            <div id="card4" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>
+              <div id="card4" class="card rank-7 spades">
+                <input type="checkbox" name="card1" value="card rank-7 spades">
+                <span class="rank">7</span>
+                <span class="suit">&spades;</span>
+            </div>           
+        </form>
+    </div>
+
+      
+</div>
+</div>
+</body>
+</html>

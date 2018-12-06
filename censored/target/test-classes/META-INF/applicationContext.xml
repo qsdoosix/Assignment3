@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="webDriverFactory" class="config.WebDriverFactory" lazy-init="true"/>
+    <bean id="webDriver" factory-bean="webDriverFactory" factory-method="getWebDriver"
+          destroy-method="quit"/>
+
+    <context:component-scan base-package="selenium.page">
+        <context:include-filter type="regex" expression="selenium.page\..*Page"/>
+    </context:component-scan>
+
+    <context:component-scan base-package="config">
+        <context:include-filter type="regex" expression="config\..*MockUserFactory"/>
+    </context:component-scan>
+
+</beans>
