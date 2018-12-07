@@ -2,3 +2,5 @@ Fixed a typo in ConnectionBasicsTest.java
 canConnectMultiplePlayers, was canConenctMultiplePlayers
 
 Added a quick selection for hand card checkbox in IndexPage.java
+
+removed the condition of Royal flush to be hearts in Hand.java
